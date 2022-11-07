@@ -36,7 +36,7 @@ abstract class Collector extends Interpreter
      */
     protected function setPrefix(string $prefix = "") : void
     {
-        $this->prefix .= $prefix;
+        $this->prefix .= $this->initPrefix($prefix);
     }
 
     /**
