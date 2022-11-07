@@ -60,7 +60,11 @@ class Collection extends Collector
      */
     protected function prefix(string $prefix = "") : void
     {
-
+        if ( !empty($prefix) ) {
+            $this->setPrefix($prefix);
+        }
+        
+        throw new \Exception("Empty prefix.");
     }
 
     /**
