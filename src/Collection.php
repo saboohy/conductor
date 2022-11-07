@@ -3,6 +3,7 @@
 namespace Saboohy\Conductor;
 
 use Saboohy\Conductor\Collector;
+use Saboohy\Conductor\Utils;
 
 class Collection extends Collector
 {
@@ -32,7 +33,12 @@ class Collection extends Collector
      */
     protected function group(object|callable $callback = null) : void
     {
-        
+        if ( Utils::dataIs($callback, ["object", "callable"]) ) {
+            call_user_func($callback, $this);
+            return;
+        }
+
+        throw new \Exception("Callback is not callable.");
     }
 
     /**
