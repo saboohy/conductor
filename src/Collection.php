@@ -77,7 +77,7 @@ class Collection extends Collector
      */
     protected function get(string $uri = "", string $action = "") : void
     {
-
+        $this->addRoute("GET", $uri, $action);
     }
 
     /**
@@ -90,7 +90,7 @@ class Collection extends Collector
      */
     protected function post(string $uri = "", string $action = "") : void
     {
-
+        $this->addRoute("POST", $uri, $action);
     }
 
     /**
@@ -103,7 +103,7 @@ class Collection extends Collector
      */
     protected function put(string $uri = "", string $action = "") : void
     {
-
+        $this->addRoute("PUT", $uri, $action);
     }
 
     /**
@@ -116,7 +116,7 @@ class Collection extends Collector
      */
     protected function patch(string $uri = "", string $action = "") : void
     {
-
+        $this->addRoute("PATCH", $uri, $action);
     }
 
     /**
@@ -129,6 +129,23 @@ class Collection extends Collector
      */
     protected function delete(string $uri = "", string $action = "") : void
     {
+        $this->addRoute("DELETE", $uri, $action);
+    }
 
+    /**
+     * Adds routing
+     * 
+     * @param string $method
+     * @param string $uri
+     * @param string $action
+     * 
+     * @return void
+     */
+    private function addRoute(string $method = "GET", string $uri = "", string $action = "") : void
+    {
+        if ( empty($uri) )      throw new \Exception("Empty uri.");
+        if ( empty($action) )   throw new \Exception("Empty action.");
+
+        $this->registerRouter($method, $uri, $action);
     }
 }
