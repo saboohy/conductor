@@ -9,7 +9,7 @@ class AdminCollection extends Collection
     /**
      * @var string
      */
-    protected string $prefix = "/admin";
+    protected string $prefix = "admin";
 
     /**
      * Collects routes
@@ -19,7 +19,7 @@ class AdminCollection extends Collection
     public function collect() : void
     {
         $this->controller("ProductController")->group(function($product) {
-            $product->prefix("prefix");
+            $product->prefix("product");
             $product->get("/", "index");
             $product->post("/", "create");
             $product->get("/{id}", "read");
