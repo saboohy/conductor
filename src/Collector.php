@@ -34,9 +34,9 @@ abstract class Collector extends Interpreter
      * 
      * @return void
      */
-    protected function setPrefix() : void
+    protected function setPrefix(string $prefix = "") : void
     {
-
+        $this->prefix .= $prefix;
     }
 
     /**
