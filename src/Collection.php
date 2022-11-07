@@ -62,6 +62,7 @@ class Collection extends Collector
     {
         if ( !empty($prefix) ) {
             $this->setPrefix($prefix);
+            return;
         }
         
         throw new \Exception("Empty prefix.");
