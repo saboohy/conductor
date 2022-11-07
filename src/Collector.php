@@ -62,7 +62,11 @@ abstract class Collector extends Interpreter
      */
     protected function registerRouter(string $method = "GET", string $uri = "", string $action = "") : void
     {
+        if ( empty($this->controller) ) {
+            throw new \Exception("Controller is not declared.");
+        }
 
+        $this->routes[$method][$this->prefix . $uri] = [$this->controller, $action];
     }
 
     /**
