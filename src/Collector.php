@@ -48,7 +48,7 @@ abstract class Collector extends Interpreter
      */
     protected function setController(string $controller = "") : void
     {
-
+        $this->controller = $controller;
     }
 
     /**
