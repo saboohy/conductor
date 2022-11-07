@@ -9,19 +9,21 @@ final class CollectionTest extends TestCase
 {
     public function testAdminCollection()
     {
+        static $param_value = "/([a-zA-Z0-9-\._~!$&'\(\)\*\+,;=:@]+)/";
+
         $array_must_be = [
             "GET" => [
-                "/api/admin/product/"                  => ["AdminCollection", "index"],
-                "/api/admin/product/([a-zA-Z0-9]+)"    => ["AdminCollection", "read"],
+                "/api/admin/product/"                   => ["ProductController", "index"],
+                "/api/admin/product/$param_value"       => ["ProductController", "read"],
             ],
             "POST" => [
-                "/api/admin/product/"                  => ["AdminCollection", "create"],
+                "/api/admin/product/"                   => ["ProductController", "create"],
             ],
             "PUT" => [
-                "/api/admin/product/([a-zA-Z0-9]+)"    => ["AdminCollection", "update"],
+                "/api/admin/product/$param_value"       => ["ProductController", "update"],
             ],
             "DELETE" => [
-                "/api/admin/product/([a-zA-Z0-9]+)"    => ["AdminCollection", "delete"],
+                "/api/admin/product/$param_value"       => ["ProductController", "delete"],
             ]
         ];
 
