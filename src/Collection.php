@@ -8,6 +8,16 @@ use Saboohy\Conductor\Utils;
 class Collection extends Collector
 {
     /**
+     * Gets prefix from child class
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->setPrefix($this->prefix);
+    }
+
+    /**
      * Controller getter
      * 
      * @param string $controller
