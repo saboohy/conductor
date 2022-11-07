@@ -11,11 +11,16 @@ class Collection extends Collector
      * 
      * @param string $controller
      * 
-     * @return void
+     * @return self
      */
-    protected function controller(string $controller = "") : void
+    protected function controller(string $controller = "") : self
     {
+        if ( !empty($controller) ) {
+            $this->setController($controller);
+            return $this;
+        }
 
+        throw new \Exception("Controller is not declared.");
     }
 
     /**
@@ -27,7 +32,7 @@ class Collection extends Collector
      */
     protected function group(object|callable $callback = null) : void
     {
-
+        
     }
 
     /**
