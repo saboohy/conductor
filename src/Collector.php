@@ -66,7 +66,7 @@ abstract class Collector extends Interpreter
             throw new \Exception("Controller is not declared.");
         }
 
-        $this->routes[$method][$this->prefix . $uri] = [$this->controller, $action];
+        $this->routes[$method][$this->initUri($this->prefix . $uri)] = [$this->controller, $action];
     }
 
     /**
@@ -77,7 +77,7 @@ abstract class Collector extends Interpreter
     public function collections() : array
     {
         call_user_func([$this, "collect"]);
-        
+
         return $this->routes;
     }
 }
