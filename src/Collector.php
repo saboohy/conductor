@@ -76,6 +76,8 @@ abstract class Collector extends Interpreter
      */
     public function collections() : array
     {
+        call_user_func([$this, "collect"]);
+        
         return $this->routes;
     }
 }
