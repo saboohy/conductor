@@ -3,8 +3,9 @@
 namespace Saboohy\Conductor\Tests\Collections;
 
 use Saboohy\Conductor\Collection;
+use Saboohy\Conductor\Contracts\CollectionContract;
 
-class AdminCollection extends Collection
+class AdminCollection extends Collection implements CollectionContract
 {
     /**
      * @var string
