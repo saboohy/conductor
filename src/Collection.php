@@ -14,7 +14,9 @@ class Collection extends Collector
      */
     public function __construct()
     {
-        $this->setPrefix($this->prefix);
+        if ( !empty($this->prefix) ) {
+            $this->setPrefix($this->prefix);
+        }
     }
 
     /**
