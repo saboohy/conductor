@@ -3,26 +3,30 @@
 use PHPUnit\Framework\TestCase;
 use Saboohy\Conductor\Tests\Collections\AdminCollection;
 use Saboohy\Conductor\Tests\Collections\SiteCollection;
+use Saboohy\Conductor\Utils;
 
 final class CollectionTest extends TestCase
 {
-    public function testAdminCollection()
+    protected function setUp() : void
     {
-        static $param_value = "/([a-zA-Z0-9-\._~!$&'\(\)\*\+,;=:@]+)/";
+        $this->paramValue = sprintf("/(%s)/", Utils::RESERVED_URI_CHARS);
+    }
 
+    public function testAdminCollection() : void
+    {
         $array_must_be = [
             "GET" => [
                 "/api/admin/product/"                   => ["ProductController", "index"],
-                "/api/admin/product/$param_value"       => ["ProductController", "read"],
+                "/api/admin/product/$this->paramValue"  => ["ProductController", "read"],
             ],
             "POST" => [
                 "/api/admin/product/"                   => ["ProductController", "create"],
             ],
             "PUT" => [
-                "/api/admin/product/$param_value"       => ["ProductController", "update"],
+                "/api/admin/product/$this->paramValue"  => ["ProductController", "update"],
             ],
             "DELETE" => [
-                "/api/admin/product/$param_value"       => ["ProductController", "delete"],
+                "/api/admin/product/$this->paramValue"  => ["ProductController", "delete"],
             ]
         ];
 
@@ -32,23 +36,21 @@ final class CollectionTest extends TestCase
         );
     }
 
-    public function testSiteCollection()
+    public function testSiteCollection() : void
     {
-        static $param_value = "/([a-zA-Z0-9-\._~!$&'\(\)\*\+,;=:@]+)/";
-
         $array_must_be = [
             "GET" => [
                 "/api/category/"                    => ["CategoryController", "index"],
-                "/api/category/$param_value"        => ["CategoryController", "read"],
+                "/api/category/$this->paramValue"   => ["CategoryController", "read"],
             ],
             "POST" => [
                 "/api/category/"                    => ["CategoryController", "create"],
             ],
             "PUT" => [
-                "/api/category/$param_value"        => ["CategoryController", "update"],
+                "/api/category/$this->paramValue"   => ["CategoryController", "update"],
             ],
             "DELETE" => [
-                "/api/category/$param_value"        => ["CategoryController", "delete"],
+                "/api/category/$this->paramValue"   => ["CategoryController", "delete"],
             ]
         ];
 
