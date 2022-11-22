@@ -21,6 +21,13 @@ use function in_array;
 final class Utils
 {
     /**
+     * Reserver characters
+     * 
+     * @see https://developers.google.com/maps/url-encoding
+     */
+    public const RESERVED_URI_CHARS = "\.\-_\!\*'\(\);\:@&=\+\$,\/\?%#\[\]";
+
+    /**
      * Checks multiple type
      * 
      * @param mixed $data
