@@ -11,7 +11,7 @@ abstract class Collector extends Interpreter
      * 
      * @var string
      */
-    private string $prefix = "/api";
+    private string $prefix = "";
 
     /**
      * Controller
@@ -36,7 +36,7 @@ abstract class Collector extends Interpreter
      */
     protected function setPrefix(string $prefix = "") : void
     {
-        $this->prefix .= $this->initPrefix($prefix);
+        $this->prefix = $this->initPrefix($prefix);
     }
 
     /**
