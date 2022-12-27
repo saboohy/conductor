@@ -9,24 +9,39 @@ final class CollectionTest extends TestCase
 {
     protected function setUp() : void
     {
-        $this->paramValue = sprintf("/(%s)/", Utils::RESERVED_URI_CHARS);
+        $this->paramValue = sprintf("(%s)", Utils::RESERVED_URI_CHARS);
     }
 
     public function testAdminCollection() : void
     {
         $array_must_be = [
             "GET" => [
-                "/admin/product/"                   => ["ProductController", "index"],
-                "/admin/product/$this->paramValue"  => ["ProductController", "read"],
+                "/admin/product/" => [
+                    "action"        => ["ProductController", "index"],
+                    "middleware"    => []
+                ],
+                "/admin/product/$this->paramValue" => [
+                    "action"        => ["ProductController", "read"],
+                    "middleware"    => []
+                ],
             ],
             "POST" => [
-                "/admin/product/"                   => ["ProductController", "create"],
+                "/admin/product/" => [
+                    "action"        => ["ProductController", "create"],
+                    "middleware"    => []
+                ],
             ],
             "PUT" => [
-                "/admin/product/$this->paramValue"  => ["ProductController", "update"],
+                "/admin/product/$this->paramValue" => [
+                    "action"        => ["ProductController", "update"],
+                    "middleware"    => []
+                ],
             ],
             "DELETE" => [
-                "/admin/product/$this->paramValue"  => ["ProductController", "delete"],
+                "/admin/product/$this->paramValue" => [
+                    "action"        => ["ProductController", "delete"],
+                    "middleware"    => []
+                ],
             ]
         ];
 
@@ -40,17 +55,32 @@ final class CollectionTest extends TestCase
     {
         $array_must_be = [
             "GET" => [
-                "/category/"                    => ["CategoryController", "index"],
-                "/category/$this->paramValue"   => ["CategoryController", "read"],
+                "/category/" => [
+                    "action"        => ["CategoryController", "index"],
+                    "middleware"    => []
+                ],
+                "/category/$this->paramValue" => [
+                    "action"        => ["CategoryController", "read"],
+                    "middleware"    => []
+                ],
             ],
             "POST" => [
-                "/category/"                    => ["CategoryController", "create"],
+                "/category/" => [
+                    "action"        => ["CategoryController", "create"],
+                    "middleware"    => []
+                ],
             ],
             "PUT" => [
-                "/category/$this->paramValue"   => ["CategoryController", "update"],
+                "/category/$this->paramValue" => [
+                    "action"        => ["CategoryController", "update"],
+                    "middleware"   => []
+                ],
             ],
             "DELETE" => [
-                "/category/$this->paramValue"   => ["CategoryController", "delete"],
+                "/category/$this->paramValue" => [
+                    "action"        => ["CategoryController", "delete"],
+                    "middleware"    => []
+                ],
             ]
         ];
 
