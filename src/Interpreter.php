@@ -22,7 +22,7 @@ abstract class Interpreter
 
         return (
             preg_match($param, $uri)
-            ? preg_replace($param, sprintf("/(%s)/", Utils::RESERVED_URI_CHARS), $uri)
+            ? preg_replace($param, sprintf("(%s)", Utils::RESERVED_URI_CHARS), $uri)
             : $uri
         );
     }
