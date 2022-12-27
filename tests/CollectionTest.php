@@ -24,10 +24,22 @@ final class CollectionTest extends TestCase
                     "action"        => ["ProductController", "read"],
                     "middleware"    => []
                 ],
+                "/admin/user/" => [
+                    "action"        => ["UserController", "index"],
+                    "middleware"    => []
+                ],
+                "/admin/user/$this->paramValue" => [
+                    "action"        => ["UserController", "read"],
+                    "middleware"    => []
+                ],
             ],
             "POST" => [
                 "/admin/product/" => [
                     "action"        => ["ProductController", "create"],
+                    "middleware"    => []
+                ],
+                "/admin/user/" => [
+                    "action"        => ["UserController", "create"],
                     "middleware"    => []
                 ],
             ],
@@ -36,10 +48,18 @@ final class CollectionTest extends TestCase
                     "action"        => ["ProductController", "update"],
                     "middleware"    => []
                 ],
+                "/admin/user/$this->paramValue" => [
+                    "action"        => ["UserController", "update"],
+                    "middleware"    => []
+                ],
             ],
             "DELETE" => [
                 "/admin/product/$this->paramValue" => [
                     "action"        => ["ProductController", "delete"],
+                    "middleware"    => []
+                ],
+                "/admin/user/$this->paramValue" => [
+                    "action"        => ["UserController", "delete"],
                     "middleware"    => []
                 ],
             ]
