@@ -20,7 +20,7 @@ class SiteCollection extends Collection implements CollectionContract
     public function collect() : void
     {
         $this->controller("CategoryController")->group(function($category) {
-            $category->prefix("category");
+            $category->prefix("/category");
             $category->get("/", "index");
             $category->post("/", "create");
             $category->get("/{id}", "read");
