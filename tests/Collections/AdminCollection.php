@@ -27,5 +27,14 @@ class AdminCollection extends Collection implements CollectionContract
             $product->put("/{id}", "update");
             $product->delete("/{id}", "delete");
         });
+
+        $this->controller("UserController")->group(function($user) {
+            $user->prefix("/user");
+            $user->get("/", "index");
+            $user->post("/", "create");
+            $user->get("/{id}", "read");
+            $user->put("/{id}", "update");
+            $user->delete("/{id}", "delete");
+        });
     }
 }
