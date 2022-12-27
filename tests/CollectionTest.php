@@ -16,17 +16,17 @@ final class CollectionTest extends TestCase
     {
         $array_must_be = [
             "GET" => [
-                "/api/admin/product/"                   => ["ProductController", "index"],
-                "/api/admin/product/$this->paramValue"  => ["ProductController", "read"],
+                "/admin/product/"                   => ["ProductController", "index"],
+                "/admin/product/$this->paramValue"  => ["ProductController", "read"],
             ],
             "POST" => [
-                "/api/admin/product/"                   => ["ProductController", "create"],
+                "/admin/product/"                   => ["ProductController", "create"],
             ],
             "PUT" => [
-                "/api/admin/product/$this->paramValue"  => ["ProductController", "update"],
+                "/admin/product/$this->paramValue"  => ["ProductController", "update"],
             ],
             "DELETE" => [
-                "/api/admin/product/$this->paramValue"  => ["ProductController", "delete"],
+                "/admin/product/$this->paramValue"  => ["ProductController", "delete"],
             ]
         ];
 
@@ -40,17 +40,17 @@ final class CollectionTest extends TestCase
     {
         $array_must_be = [
             "GET" => [
-                "/api/category/"                    => ["CategoryController", "index"],
-                "/api/category/$this->paramValue"   => ["CategoryController", "read"],
+                "/category/"                    => ["CategoryController", "index"],
+                "/category/$this->paramValue"   => ["CategoryController", "read"],
             ],
             "POST" => [
-                "/api/category/"                    => ["CategoryController", "create"],
+                "/category/"                    => ["CategoryController", "create"],
             ],
             "PUT" => [
-                "/api/category/$this->paramValue"   => ["CategoryController", "update"],
+                "/category/$this->paramValue"   => ["CategoryController", "update"],
             ],
             "DELETE" => [
-                "/api/category/$this->paramValue"   => ["CategoryController", "delete"],
+                "/category/$this->paramValue"   => ["CategoryController", "delete"],
             ]
         ];
 
