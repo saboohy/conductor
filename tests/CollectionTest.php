@@ -1,8 +1,11 @@
 <?php declare(strict_types=1);
 
 use PHPUnit\Framework\TestCase;
-use Saboohy\Conductor\Tests\Collections\AdminCollection;
-use Saboohy\Conductor\Tests\Collections\SiteCollection;
+use Saboohy\Conductor\Tests\Collections\{
+    AdminCollection,
+    SiteCollection,
+    CollectionWithMiddleware
+};
 use Saboohy\Conductor\Utils;
 
 final class CollectionTest extends TestCase
@@ -107,6 +110,30 @@ final class CollectionTest extends TestCase
         $this->assertSame(
             $array_must_be,
             (new SiteCollection)->collections()
+        );
+    }
+
+    public function testCollectionWithMiddleware()
+    {
+        $array_must_be = [
+            "GET" => [
+                "/work/" => [
+                    "action"        => ["WorkController", "index"],
+                    "middleware"    => ["Auth", "MW1", "MW2"]
+                ],
+            ],
+            "POST" => [
+                "/work/" => [
+                    "action"        => ["WorkController", "create"],
+                    "middleware"    => ["Auth", "MW1", "MW2", "MW3"]
+                ],
+                
+            ]
+        ];
+
+        $this->assertSame(
+            $array_must_be,
+            (new CollectionWithMiddleware)->collections()
         );
     }
 }
