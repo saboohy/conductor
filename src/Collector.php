@@ -60,7 +60,7 @@ abstract class Collector extends Interpreter
      * 
      * @return void
      */
-    protected function registerRouter(string $method = "GET", string $uri = "", string $action = "") : void
+    protected function registerRouter(string $method = "GET", string $uri = "", string $action = "", array $middlewares = []) : void
     {
         if ( empty($this->controller) ) {
             throw new \Exception("Controller is not declared.");
@@ -68,7 +68,7 @@ abstract class Collector extends Interpreter
 
         $this->routes[$method][$this->initUri($this->prefix . $uri)] = [
             "action"        => [$this->controller, $action],
-            "middleware"    => []
+            "middleware"    => $middlewares
         ];
     }
 
