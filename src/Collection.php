@@ -5,8 +5,30 @@ namespace Saboohy\Conductor;
 use Saboohy\Conductor\Collector;
 use Saboohy\Conductor\Utils;
 
+use function array_unshift;
+use function array_merge;
+
 class Collection extends Collector
 {
+    /**
+     * Middlewares
+     * 
+     * @var array
+     */
+    private array $calledMiddlewares = [];
+
+    /**
+     * Initializer
+     * 
+     * @return void
+     */
+    public function __construct()
+    {
+        if ( isset($this->middleware) ) {
+            array_unshift($this->calledMiddlewares, $this->middleware);
+        }
+    }
+
     /**
      * Controller getter
      * 
@@ -14,10 +36,13 @@ class Collection extends Collector
      * 
      * @return self
      */
-    protected function controller(string $controller = "") : self
+    protected function controller(string $controller = "", array $middlewares = []) : self
     {
         if ( !empty($controller) ) {
+
+            $this->calledMiddlewares = array_merge($this->calledMiddlewares, $middlewares);
             $this->setController($controller);
+
             return $this;
         }
 
@@ -61,27 +86,29 @@ class Collection extends Collector
     /**
      * Gets routing by GET method
      * 
-     * @param string $uri
-     * @param string $action
+     * @param string            $uri
+     * @param string            $action
+     * @param array<string>     $middlewares
      * 
      * @return void
      */
-    protected function get(string $uri = "", string $action = "") : void
+    protected function get(string $uri = "", string $action = "", array $middlewares = []) : void
     {
-        $this->addRoute("GET", $uri, $action);
+        $this->addRoute("GET", $uri, $action, $middlewares);
     }
 
     /**
      * Gets routing by POST method
      * 
-     * @param string $uri
-     * @param string $action
+     * @param string            $uri
+     * @param string            $action
+     * @param array<string>     $middlewares
      * 
      * @return void
      */
-    protected function post(string $uri = "", string $action = "") : void
+    protected function post(string $uri = "", string $action = "", array $middlewares = []) : void
     {
-        $this->addRoute("POST", $uri, $action);
+        $this->addRoute("POST", $uri, $action, $middlewares);
     }
 
     /**
@@ -92,35 +119,37 @@ class Collection extends Collector
      * 
      * @return void
      */
-    protected function put(string $uri = "", string $action = "") : void
+    protected function put(string $uri = "", string $action = "", array $middlewares = []) : void
     {
-        $this->addRoute("PUT", $uri, $action);
+        $this->addRoute("PUT", $uri, $action, $middlewares);
     }
 
     /**
      * Gets routing by PATCH method
      * 
-     * @param string $uri
-     * @param string $action
+     * @param string            $uri
+     * @param string            $action
+     * @param array<string>     $middlewares
      * 
      * @return void
      */
-    protected function patch(string $uri = "", string $action = "") : void
+    protected function patch(string $uri = "", string $action = "", array $middlewares = []) : void
     {
-        $this->addRoute("PATCH", $uri, $action);
+        $this->addRoute("PATCH", $uri, $action, $middlewares);
     }
 
     /**
      * Gets routing by DELETE method
      * 
-     * @param string $uri
-     * @param string $action
+     * @param string            $uri
+     * @param string            $action
+     * @param array<string>     $middlewares
      * 
      * @return void
      */
-    protected function delete(string $uri = "", string $action = "") : void
+    protected function delete(string $uri = "", string $action = "", array $middlewares = []) : void
     {
-        $this->addRoute("DELETE", $uri, $action);
+        $this->addRoute("DELETE", $uri, $action, $middlewares);
     }
 
     /**
@@ -132,11 +161,13 @@ class Collection extends Collector
      * 
      * @return void
      */
-    private function addRoute(string $method = "GET", string $uri = "", string $action = "") : void
+    private function addRoute(string $method = "GET", string $uri = "", string $action = "", array $middlewares = []) : void
     {
         if ( empty($uri) )      throw new \Exception("Empty uri.");
         if ( empty($action) )   throw new \Exception("Empty action.");
 
-        $this->registerRouter($method, $uri, $action);
+        $middlewares = array_merge($this->calledMiddlewares, $middlewares);
+
+        $this->registerRouter($method, $uri, $action, $middlewares);
     }
 }
